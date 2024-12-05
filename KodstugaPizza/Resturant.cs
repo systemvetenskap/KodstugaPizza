@@ -10,9 +10,9 @@ public class Resturant
 
     public bool IsPizzaVeggie(Pizza pizza)
     {
-        foreach (string ingredient in pizza.Ingredients)
+        foreach (Ingredient ingredient in pizza.Ingredients)
         {
-            if (ingredient == "Skinka" || ingredient == "Räkor")
+            if (!ingredient.IsVegetrian)
             {
                 return false;
             }
@@ -25,7 +25,18 @@ public class Resturant
     {
         return _menu;
     }
-
+    public List<Pizza> GetVeggiePizzas()
+    {
+        List<Pizza> veggies = new List<Pizza>();
+        foreach (Pizza pizza in _menu)
+        {
+            if (pizza.IsVeggie) // eller pizza.IsPizzaVeggie()
+            {
+                veggies.Add(pizza);
+            }
+        }
+        return veggies;
+    }
     public List<Pizza> GetCheapPizzas()
     {
         List<Pizza> cheapPizzas = new List<Pizza>();

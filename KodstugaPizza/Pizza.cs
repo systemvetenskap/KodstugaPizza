@@ -5,6 +5,7 @@
         public int Number { get; set; }
         public string Name { get; private set; }
         public double Price { get; private set; }
+        public bool IsVeggie => IsPizzaVeggie();
         public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
         /// <summary>
         /// Skapar en ny pizza av en smarrig sort
@@ -16,6 +17,19 @@
             Name = name;
             Price = price;
             Ingredients = ingredients;
+        }
+
+        public bool IsPizzaVeggie()
+        {
+            foreach (Ingredient ingredient in Ingredients)
+            {
+                if (!ingredient.IsVegetrian)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public override string ToString()

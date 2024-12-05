@@ -20,9 +20,11 @@ public partial class MainWindow : Window
     private void button_Click(object sender, RoutedEventArgs e)
     {
         double price = _random.NextDouble() + 70; // 70 kr + öre 
+        // vi kan skapa listan direkt med en
+        // collection initializer
         List<Ingredient> ingredients = new List<Ingredient>()
         {
-           new Ingredient{Name="skinka", IsVegetrian=false},
+           new Ingredient{Name="oregano", IsVegetrian=true},
            new Ingredient{Name="Mozzarella", IsVegetrian=true},
         };
 
@@ -31,10 +33,17 @@ public partial class MainWindow : Window
             Name = "Tomatsås",
             IsVegetrian = true
         };
+        // eller så lägger vi till ingrediensen styckevis.
+        // det senare sättet är det vanligaste eftersom vi sällan
+        // känner till vilka saker som ska läggas till på förhand
         ingredients.Add(ingredient);
         Pizza pizza = new Pizza(name: txtTest.Text, price: price, ingredients);
         _resturant.AddNewPizza(pizza);
 
+        /* den här metoden känns onödig eftersom det 
+         * är ju smartare att pizzan själv kan svara på om
+         * den är vegetarisk eller inte
+         */
         bool isVeggie = _resturant.IsPizzaVeggie(pizza);
 
         RefreshPizzaMenuListBox();
