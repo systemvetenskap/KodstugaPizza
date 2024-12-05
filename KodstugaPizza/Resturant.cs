@@ -8,6 +8,19 @@ public class Resturant
         _menu.Add(pizza);
     }
 
+    public bool IsPizzaVeggie(Pizza pizza)
+    {
+        foreach (string ingredient in pizza.Ingredients)
+        {
+            if (ingredient == "Skinka" || ingredient == "Räkor")
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public List<Pizza> GetAllPizzas()
     {
         return _menu;
